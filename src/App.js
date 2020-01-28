@@ -2,24 +2,42 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { ApolloProvider, useQuery } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient, { gql } from 'apollo-boost';
 import Apollo from './Apollo';
 
 const client = new ApolloClient({
-	uri: 'https://api-euwest.graphcms.com/v1/ck5xurgaz2vik01fghe9ce6g6/master',
+	// uri: 'https://api-euwest.graphcms.com/v1/ck5xurgaz2vik01fghe9ce6g6/master',
+	uri: 'https://api.spacex.land/graphql/',
 });
 
-const POST_QUERY = gql`
-	{
-		posts {
-			id
-			title
-			body
-			createdAt
+const SPACE_X = gql`
+	query spacex {
+		launches {
+			launch_year
+			mission_name
+			mission_id
+			rocket {
+				rocket_name
+				rocket_type
+			}
+			telemetry {
+				flight_club
+			}
 		}
 	}
 `;
+
+// const POST_QUERY = gql`
+// 	{
+// 		posts {
+// 			id
+// 			title
+// 			body
+// 			createdAt
+// 		}
+// 	}
+// `;
 
 // client
 // 	.query({
